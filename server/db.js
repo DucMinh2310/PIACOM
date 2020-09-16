@@ -19,6 +19,7 @@ const User = require("./models/user");
 const Role = require("./models/role");
 const Product = require("./models/product");
 const GasStation = require("./models/gasStation");
+const CreditClient = require("./models/creditClient");
 const Driver = require("./models/driver");
 const Contract = require("./models/contract");
 const Client = require("./models/client");
@@ -55,11 +56,11 @@ Client.belongsTo(User, {
 
 // =====================================================
 User.hasOne(GasStation, {
-  foreignKey: { name: "stationID", allowNull: false },
+  foreignKey: { name: "gasStationID", allowNull: false },
   onDelete: "CASCADE",
 });
 GasStation.belongsTo(User, {
-  foreignKey: { name: "stationID", allowNull: false },
+  foreignKey: { name: "gasStationID", allowNull: false },
   onDelete: "CASCADE",
 });
 // =====================================================
@@ -109,6 +110,26 @@ Client.hasMany(Contract, {
 });
 Contract.belongsTo(Client, {
   foreignKey: { name: "clientID", allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// =====================================================
+Client.hasMany(CreditClient, {
+  foreignKey: { name: "clientID", allowNull: false },
+  onDelete: "CASCADE",
+});
+CreditClient.belongsTo(Client, {
+  foreignKey: { name: "clientID", allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// =====================================================
+Contract.hasOne(CreditClient, {
+  foreignKey: { name: "contractID", allowNull: false },
+  onDelete: "CASCADE",
+});
+CreditClient.belongsTo(Contract, {
+  foreignKey: { name: "contractID", allowNull: false },
   onDelete: "CASCADE",
 });
 

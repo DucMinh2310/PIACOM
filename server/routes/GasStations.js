@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const GasStation = require("../models/gasStation");
 
-router.post("/gasstation", (req, res) => {
+router.post("/new", (req, res) => {
   GasStation.create({
-    stationID: req.body.stationID,
+    gasStationID: req.body.gasStationID,
     name: req.body.name,
-    address: req.body.address,
     location: req.body.location,
+    address: req.body.address,
     workingTime: req.body.workingTime,
   })
     .then((newlyGasStation) => {

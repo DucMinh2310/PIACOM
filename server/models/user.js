@@ -5,7 +5,7 @@ const User = db.define(
   "user",
   {
     // Model attributes are defined here
-    loginID: {
+    userID: {
       type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,

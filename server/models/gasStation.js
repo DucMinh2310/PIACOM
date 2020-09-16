@@ -1,11 +1,11 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const db = require("../db");
 
-const Contract = db.define(
-  "contract",
+const GasStation = db.define(
+  "gas_station",
   {
     // Model attributes are defined here
-    stationID: {
+    gasStationID: {
       type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
@@ -14,11 +14,11 @@ const Contract = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    address: {
+    location: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    location: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -34,4 +34,4 @@ const Contract = db.define(
   }
 );
 
-module.exports = Contract;
+module.exports = GasStation;

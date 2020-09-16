@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.use("/", require("./routes/users"));
+app.use("/", require("./routes/GasStations"));
 
 app.listen(8080, () => {
   console.log(`Server is listening at http://localhost:8080!`);

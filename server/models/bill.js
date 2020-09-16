@@ -14,11 +14,15 @@ const Bill = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    contractID: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     clientID: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    stationID: {
+    gasStationID: {
       type: DataTypes.STRING,
       allowNull: false,
     },

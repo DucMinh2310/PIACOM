@@ -18,6 +18,10 @@ const Driver = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    residentID: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     avatar: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -26,15 +30,11 @@ const Driver = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    gmail: {
+    plate: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    plate: {
       type: DataTypes.STRING,
       allowNull: false,
     },

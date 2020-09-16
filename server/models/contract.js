@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const db = require("../db");
 
 const Contract = db.define(
-  "contracts",
+  "contract",
   {
     // Model attributes are defined here
     contractID: {
@@ -12,6 +12,10 @@ const Contract = db.define(
     },
     clientID: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    signingDate: {
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     startDate: {

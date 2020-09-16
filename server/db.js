@@ -20,8 +20,6 @@ const Role = require("./models/role");
 const Product = require("./models/product");
 const GasStation = require("./models/gasStation");
 const Driver = require("./models/driver");
-const CreditDriver = require("./models/creditDriver");
-const CreditClient = require("./models/creditClient");
 const Contract = require("./models/contract");
 const Client = require("./models/client");
 const Bill = require("./models/bill");
@@ -75,13 +73,13 @@ Bill.belongsTo(Driver, {
 });
 
 // =====================================================
-Driver.hasMany(CreditDriver, {
-  foreignKey: { name: "driverID", allowNull: false },
-  onDelete: "CASCADE",
+Driver.belongsToMany(Contract, {
+  through: "credit_drivers",
+  foreignKey: { name: "driverID" },
 });
-CreditDriver.belongsTo(Driver, {
-  foreignKey: { name: "driverID", allowNull: false },
-  onDelete: "CASCADE",
+Contract.belongsToMany(Driver, {
+  through: "credit_drivers",
+  foreignKey: { name: "contractID" },
 });
 
 // =====================================================
@@ -90,16 +88,6 @@ Client.hasMany(Driver, {
   onDelete: "CASCADE",
 });
 Driver.belongsTo(Client, {
-  foreignKey: { name: "clientID", allowNull: false },
-  onDelete: "CASCADE",
-});
-
-// =====================================================
-Client.hasMany(CreditClient, {
-  foreignKey: { name: "clientID", allowNull: false },
-  onDelete: "CASCADE",
-});
-CreditClient.belongsTo(Client, {
   foreignKey: { name: "clientID", allowNull: false },
   onDelete: "CASCADE",
 });
@@ -126,11 +114,11 @@ Contract.belongsTo(Client, {
 
 // =====================================================
 GasStation.hasMany(Bill, {
-  foreignKey: { name: "stationID", allowNull: false },
+  foreignKey: { name: "gasStationID", allowNull: false },
   onDelete: "CASCADE",
 });
 Bill.belongsTo(GasStation, {
-  foreignKey: { name: "stationID", allowNull: false },
+  foreignKey: { name: "gasStationID", allowNull: false },
   onDelete: "CASCADE",
 });
 
@@ -141,25 +129,5 @@ Product.hasMany(Bill, {
 });
 Bill.belongsTo(Product, {
   foreignKey: { name: "productID", allowNull: false },
-  onDelete: "CASCADE",
-});
-
-// =====================================================
-Contract.hasOne(CreditClient, {
-  foreignKey: { name: "contractID", allowNull: false },
-  onDelete: "CASCADE",
-});
-CreditClient.belongsTo(Contract, {
-  foreignKey: { name: "contractID", allowNull: false },
-  onDelete: "CASCADE",
-});
-
-// =====================================================
-Contract.hasMany(CreditDriver, {
-  foreignKey: { name: "contractID", allowNull: false },
-  onDelete: "CASCADE",
-});
-CreditDriver.belongsTo(Contract, {
-  foreignKey: { name: "contractID", allowNull: false },
   onDelete: "CASCADE",
 });
